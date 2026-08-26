@@ -1,0 +1,14 @@
+.navigation {
+  display: flex;
+  gap: 16px;
+}
+
+.navigation__link {
+  color: #4b5563;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navigation__link:hover {
+  color: #2563eb;
+}

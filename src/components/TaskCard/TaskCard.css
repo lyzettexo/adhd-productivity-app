@@ -1,0 +1,66 @@
+.task-card {
+  padding: 18px;
+  margin-bottom: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #f9fafb;
+}
+
+.task-card__name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.task-card form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-card form input {
+  margin-bottom: 0;
+}
+
+.task-card__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.task-card__actions .button {
+  flex: 1;
+  margin: 0;
+}
+
+.button_start {
+  background-color: #2563eb;
+}
+
+.button_complete {
+  background-color: #64748b;
+}
+
+.button_delete {
+  background-color: transparent;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+@media screen and (max-width: 500px) {
+  .task-card form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .task-card form input {
+    width: 100%;
+    max-width: none;
+  }
+
+  .task-card form button {
+    width: 100%;
+    margin: 0;
+  }
+}
