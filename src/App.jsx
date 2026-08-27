@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import StartModal from "./components/StartModal/StartModal";
@@ -161,6 +161,8 @@ function App() {
         />
 
         <Route path="/resources" element={<ResourceLibrary />} />
+
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
       <Footer />

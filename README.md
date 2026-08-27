@@ -1,16 +1,67 @@
-# React + Vite
+# Focus Flow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Focus Flow is an ADHD-friendly productivity application designed to help users overcome task initiation difficulties by breaking tasks into small, manageable first steps.
 
-Currently, two official plugins are available:
+The application encourages users to start tasks, track their progress, earn points for taking action, use a focus timer, and search for ADHD-related books and resources.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Live Project
 
-## React Compiler
+View the deployed application:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+https://lyzettexo.github.io/adhd-productivity-app/#/
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Create and delete tasks
+- Break tasks into a small first step
+- Start tasks with encouraging feedback
+- Mark tasks as complete or undo completion
+- Earn points for starting and completing tasks
+- Reset accumulated points
+- Track started and completed tasks
+- 25-minute focus timer with start, pause, and reset controls
+- Save tasks and points using localStorage
+- Search for ADHD-related books and resources
+- Display API search results three at a time
+- Load additional results using a "Show More" button
+- Loading animation while API requests are being processed
+- Error and "nothing found" states for API requests
+- Home and Resource Library routes
+- Responsive layout for desktop and mobile devices
+- Simulated registration, login, and logout
+- Reusable modal components
+
+## Technologies Used
+
+- React
+- JavaScript
+- JSX
+- CSS
+- Vite
+- React Router
+- Fetch API
+- Open Library API
+- localStorage
+- Git
+
+## Third-Party API
+
+Focus Flow uses the Open Library Search API to allow users to search for books and resources related to ADHD.
+
+## Routes
+
+The application contains two main routes:
+
+- `/` — Focus Flow dashboard
+- `/resources` — Resource Library/API
+
+## Local Storage
+
+Focus Flow uses browser localStorage to preserve:
+
+- Tasks
+- Task status
+- First steps
+- Points
+
+This allows productivity data to remain available after refreshing the page.
