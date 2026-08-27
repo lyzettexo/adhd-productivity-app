@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 
-function Navigation({ onLoginClick, onRegisterClick }) {
+function Navigation({ isLoggedIn, onLoginClick, onRegisterClick, onLogout }) {
   return (
     <nav className="navigation">
       <NavLink className="navigation__link" to="/">
@@ -12,21 +12,29 @@ function Navigation({ onLoginClick, onRegisterClick }) {
         Resources
       </NavLink>
 
-      <button
-        className="navigation__button"
-        type="button"
-        onClick={onLoginClick}
-      >
-        Log In
-      </button>
+      {isLoggedIn ? (
+        <button className="navigation__button" type="button" onClick={onLogout}>
+          Log Out
+        </button>
+      ) : (
+        <>
+          <button
+            className="navigation__button"
+            type="button"
+            onClick={onLoginClick}
+          >
+            Log In
+          </button>
 
-      <button
-        className="navigation__button"
-        type="button"
-        onClick={onRegisterClick}
-      >
-        Register
-      </button>
+          <button
+            className="navigation__button"
+            type="button"
+            onClick={onRegisterClick}
+          >
+            Register
+          </button>
+        </>
+      )}
     </nav>
   );
 }

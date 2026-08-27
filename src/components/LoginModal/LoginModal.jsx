@@ -15,9 +15,13 @@ function LoginModal({ isOpen, onClose, onLogin }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <input type="email" placeholder="Email" />
+      <input type="email" placeholder="Email" autoComplete="email" />
 
-      <input type="password" placeholder="Password" />
+      <input
+        type="password"
+        placeholder="Password"
+        autoComplete="current-password"
+      />
     </ModalWithForm>
   );
 }

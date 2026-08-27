@@ -24,13 +24,13 @@
 
 .task-card__actions {
   display: flex;
-  gap: 10px;
-  margin-top: 8px;
+  gap: 8px;
+  margin-top: 12px;
 }
 
 .task-card__actions .button {
-  flex: 1;
-  margin: 0;
+  width: auto;
+  min-width: 100px;
 }
 
 .button_start {

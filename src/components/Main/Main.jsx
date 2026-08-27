@@ -14,6 +14,7 @@ function Main({
   onDeleteTask,
   onSaveFirstStep,
   onStartTask,
+  onResetPoints,
 }) {
   return (
     <>
@@ -21,6 +22,7 @@ function Main({
         startedCount={startedCount}
         completedCount={completedCount}
         points={points}
+        onResetPoints={onResetPoints}
       />
 
       <TaskInput onAddTask={onAddTask} />

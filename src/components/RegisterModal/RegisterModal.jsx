@@ -15,11 +15,15 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <input type="text" placeholder="Name" />
+      <input type="text" placeholder="Name" autoComplete="name" />
 
-      <input type="email" placeholder="Email" />
+      <input type="email" placeholder="Email" autoComplete="email" />
 
-      <input type="password" placeholder="Password" />
+      <input
+        type="password"
+        placeholder="Password"
+        autoComplete="new-password"
+      />
     </ModalWithForm>
   );
 }

@@ -1,6 +1,6 @@
 import "./Progress.css";
 
-function Progress({ startedCount, completedCount, points }) {
+function Progress({ startedCount, completedCount, points, onResetPoints }) {
   return (
     <section className="progress">
       <h2>Today's Progress</h2>
@@ -19,6 +19,14 @@ function Progress({ startedCount, completedCount, points }) {
         <div className="progress__stat">
           <p className="progress__number">{points}</p>
           <p>Points</p>
+
+          <button
+            className="progress__reset"
+            type="button"
+            onClick={onResetPoints}
+          >
+            Reset Points
+          </button>
         </div>
       </div>
     </section>

@@ -121,11 +121,23 @@ function App() {
     setIsLoggedIn(false);
   }
 
+  function handleResetPoints() {
+    const shouldReset = window.confirm(
+      "Are you sure you want to reset your points?"
+    );
+
+    if (shouldReset) {
+      setPoints(0);
+    }
+  }
+
   return (
     <main className="app">
       <Header
+        isLoggedIn={isLoggedIn}
         onLoginClick={() => setIsLoginModalOpen(true)}
         onRegisterClick={() => setIsRegisterModalOpen(true)}
+        onLogout={handleLogout}
       />
 
       <Routes>
@@ -143,6 +155,7 @@ function App() {
               onDeleteTask={handleDeleteTask}
               onSaveFirstStep={handleSaveFirstStep}
               onStartTask={handleStartTask}
+              onResetPoints={handleResetPoints}
             />
           }
         />
