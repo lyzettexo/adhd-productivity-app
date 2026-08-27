@@ -1,5 +1,6 @@
 .navigation {
   display: flex;
+  align-items: center;
   gap: 16px;
 }
 
@@ -11,4 +12,17 @@
 
 .navigation__link:hover {
   color: #2563eb;
+}
+
+.navigation__button {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.navigation__button:hover {
+  color: #2563eb;
+  opacity: 1;
 }

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import "./ModalWithForm.css";
 
 function ModalWithForm({
@@ -8,6 +10,24 @@ function ModalWithForm({
   children,
   onSubmit,
 }) {
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    function handleEscapeKey(event) {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    }
+
+    document.addEventListener("keydown", handleEscapeKey);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) {
     return null;
   }

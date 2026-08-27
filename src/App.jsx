@@ -6,6 +6,8 @@ import StartModal from "./components/StartModal/StartModal";
 import ResourceLibrary from "./components/ResourceLibrary/ResourceLibrary";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
+import LoginModal from "./components/LoginModal/LoginModal";
+import RegisterModal from "./components/RegisterModal/RegisterModal";
 
 function App() {
   const [tasks, setTasks] = useState(() => {
@@ -16,6 +18,9 @@ function App() {
 
   const [activeTask, setActiveTask] = useState(null);
   const [isStartModalOpen, setIsStartModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [points, setPoints] = useState(() => {
     const savedPoints = localStorage.getItem("points");
@@ -102,9 +107,26 @@ function App() {
     setTasks(tasks.map((task) => (task.id === taskId ? startedTask : task)));
   }
 
+  function handleLogin() {
+    setIsLoggedIn(true);
+    setIsLoginModalOpen(false);
+  }
+
+  function handleRegister() {
+    setIsLoggedIn(true);
+    setIsRegisterModalOpen(false);
+  }
+
+  function handleLogout() {
+    setIsLoggedIn(false);
+  }
+
   return (
     <main className="app">
-      <Header />
+      <Header
+        onLoginClick={() => setIsLoginModalOpen(true)}
+        onRegisterClick={() => setIsRegisterModalOpen(true)}
+      />
 
       <Routes>
         <Route
@@ -130,6 +152,17 @@ function App() {
 
       <Footer />
 
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onLogin={handleLogin}
+      />
+
+      <RegisterModal
+        isOpen={isRegisterModalOpen}
+        onClose={() => setIsRegisterModalOpen(false)}
+        onRegister={handleRegister}
+      />
       {isStartModalOpen && activeTask && (
         <StartModal
           task={activeTask}
