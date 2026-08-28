@@ -8,6 +8,7 @@ import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
 import LoginModal from "./components/LoginModal/LoginModal";
 import RegisterModal from "./components/RegisterModal/RegisterModal";
+import { getRandomEncouragement } from "./utils/encouragementMessages";
 
 function App() {
   const [tasks, setTasks] = useState(() => {
@@ -21,6 +22,7 @@ function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [encouragementMessage, setEncouragementMessage] = useState("");
 
   const [points, setPoints] = useState(() => {
     const savedPoints = localStorage.getItem("points");
@@ -101,6 +103,7 @@ function App() {
       setPoints((currentPoints) => currentPoints + 5);
     }
 
+    setEncouragementMessage(getRandomEncouragement());
     setActiveTask(startedTask);
     setIsStartModalOpen(true);
 
@@ -181,6 +184,7 @@ function App() {
       {isStartModalOpen && activeTask && (
         <StartModal
           task={activeTask}
+          message={encouragementMessage}
           onClose={() => setIsStartModalOpen(false)}
         />
       )}

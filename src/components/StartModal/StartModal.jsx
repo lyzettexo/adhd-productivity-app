@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./StartModal.css";
 
-function StartModal({ task, onClose }) {
+function StartModal({ task, message, onClose }) {
   useEffect(() => {
     function handleEscapeKey(event) {
       if (event.key === "Escape") {
@@ -31,7 +31,7 @@ function StartModal({ task, onClose }) {
           ×
         </button>
 
-        <h2>Nice! You started!</h2>
+        <h2>{message}</h2>
 
         <p className="start-modal__label">Start here:</p>
 

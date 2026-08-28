@@ -3,6 +3,7 @@ import "./FocusTimer.css";
 
 function FocusTimer({ task }) {
   const [secondsLeft, setSecondsLeft] = useState(25 * 60);
+  const [sessionLength, setSessionLength] = useState(25 * 60);
   const [isRunning, setIsRunning] = useState(false);
 
   const minutes = Math.floor(secondsLeft / 60);
@@ -26,8 +27,22 @@ function FocusTimer({ task }) {
 
   useEffect(() => {
     setIsRunning(false);
-    setSecondsLeft(25 * 60);
-  }, [task]);
+    setSecondsLeft(sessionLength);
+  }, [task, sessionLength]);
+
+  function handleIncreaseTime() {
+    const newLength = Math.min(sessionLength + 5 * 60, 60 * 60);
+
+    setSessionLength(newLength);
+    setSecondsLeft(newLength);
+  }
+
+  function handleDecreaseTime() {
+    const newLength = Math.max(sessionLength - 5 * 60, 5 * 60);
+
+    setSessionLength(newLength);
+    setSecondsLeft(newLength);
+  }
 
   return (
     <section>
@@ -46,23 +61,47 @@ function FocusTimer({ task }) {
         {minutes}:{seconds.toString().padStart(2, "0")}
       </p>
 
-      <button
-        type="button"
-        onClick={() => setIsRunning(!isRunning)}
-        disabled={!task || isFinished}
-      >
-        {isRunning ? "Pause" : "Start Timer"}
-      </button>
+      <div className="focus-timer__controls">
+        <button
+          className="focus-timer__adjust-button"
+          type="button"
+          onClick={handleDecreaseTime}
+          disabled={isRunning || secondsLeft <= 5 * 60}
+        >
+          − 5 min
+        </button>
 
-      <button
-        type="button"
-        onClick={() => {
-          setIsRunning(false);
-          setSecondsLeft(25 * 60);
-        }}
-      >
-        Reset
-      </button>
+        <button
+          type="button"
+          className="focus-timer__adjust-button"
+          onClick={handleIncreaseTime}
+          disabled={isRunning || secondsLeft >= 60 * 60}
+        >
+          + 5 min
+        </button>
+      </div>
+
+      <div className="focus-timer__actions">
+        <button
+          className="focus-timer__start-button"
+          type="button"
+          onClick={() => setIsRunning(!isRunning)}
+          disabled={!task || isFinished}
+        >
+          {isRunning ? "Pause" : "Start Timer"}
+        </button>
+
+        <button
+          className="focus-timer__reset-button"
+          type="button"
+          onClick={() => {
+            setIsRunning(false);
+            setSecondsLeft(sessionLength);
+          }}
+        >
+          Reset
+        </button>
+      </div>
 
       {isFinished && <p>Focus session complete! Nice work.</p>}
     </section>
