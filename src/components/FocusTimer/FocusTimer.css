@@ -1,0 +1,70 @@
+.focus-timer__time {
+  margin: 20px 0;
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  color: #2563eb;
+}
+
+.focus-timer__task {
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  border-left: 4px solid #2563eb;
+}
+
+.focus-timer__controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.focus-timer__adjust-button {
+  min-width: 72px;
+  padding: 7px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: white;
+  color: #4b5563;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.focus-timer__adjust-button:hover:not(:disabled) {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.focus-timer__adjust-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.focus-timer__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.focus-timer__start-button {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.focus-timer__reset-button {
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #6b7280;
+  font-weight: 500;
+  cursor: pointer;
+}
