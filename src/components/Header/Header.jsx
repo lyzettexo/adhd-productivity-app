@@ -2,7 +2,13 @@ import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router-dom";
 
-function Header({ isLoggedIn, onLoginClick, onRegisterClick, onLogout }) {
+function Header({
+  isLoggedIn,
+  currentUser,
+  onLoginClick,
+  onRegisterClick,
+  onLogout,
+}) {
   return (
     <header className="header">
       <div>
@@ -15,6 +21,7 @@ function Header({ isLoggedIn, onLoginClick, onRegisterClick, onLogout }) {
 
       <Navigation
         isLoggedIn={isLoggedIn}
+        currentUser={currentUser}
         onLoginClick={onLoginClick}
         onRegisterClick={onRegisterClick}
         onLogout={onLogout}

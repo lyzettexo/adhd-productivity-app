@@ -65,3 +65,7 @@ Focus Flow uses browser localStorage to preserve:
 - Points
 
 This allows productivity data to remain available after refreshing the page.
+
+## Project Pitch Video
+
+Check out [this video](https://drive.google.com/file/d/1MRL5vXaSJigj2FO2Chuz-rbZmeSCnTj8/view?usp=drive_link), where I describe my project and some challenges I faced while building it.

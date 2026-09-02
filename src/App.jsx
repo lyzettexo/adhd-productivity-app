@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer";
 import LoginModal from "./components/LoginModal/LoginModal";
 import RegisterModal from "./components/RegisterModal/RegisterModal";
 import { getRandomEncouragement } from "./utils/encouragementMessages";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   const [tasks, setTasks] = useState(() => {
@@ -22,6 +23,7 @@ function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const [encouragementMessage, setEncouragementMessage] = useState("");
 
   const [points, setPoints] = useState(() => {
@@ -110,18 +112,21 @@ function App() {
     setTasks(tasks.map((task) => (task.id === taskId ? startedTask : task)));
   }
 
-  function handleLogin() {
+  function handleLogin(userData) {
+    setCurrentUser(userData);
     setIsLoggedIn(true);
     setIsLoginModalOpen(false);
   }
 
-  function handleRegister() {
+  function handleRegister(userData) {
+    setCurrentUser(userData);
     setIsLoggedIn(true);
     setIsRegisterModalOpen(false);
   }
 
   function handleLogout() {
     setIsLoggedIn(false);
+    setCurrentUser(null);
   }
 
   function handleResetPoints() {
@@ -134,10 +139,15 @@ function App() {
     }
   }
 
+  function handleUpdateUser(updatedUser) {
+    setCurrentUser(updatedUser);
+  }
+
   return (
     <main className="app">
       <Header
         isLoggedIn={isLoggedIn}
+        currentUser={currentUser}
         onLoginClick={() => setIsLoginModalOpen(true)}
         onRegisterClick={() => setIsRegisterModalOpen(true)}
         onLogout={handleLogout}
@@ -147,25 +157,53 @@ function App() {
         <Route
           path="/"
           element={
-            <Main
-              startedCount={startedCount}
-              completedCount={completedCount}
-              points={points}
-              tasks={tasks}
-              activeTask={activeTask}
-              onAddTask={handleAddTask}
-              onToggleTask={handleToggleTask}
-              onDeleteTask={handleDeleteTask}
-              onSaveFirstStep={handleSaveFirstStep}
-              onStartTask={handleStartTask}
-              onResetPoints={handleResetPoints}
-            />
+            isLoggedIn ? (
+              <Main
+                startedCount={startedCount}
+                completedCount={completedCount}
+                points={points}
+                tasks={tasks}
+                activeTask={activeTask}
+                onAddTask={handleAddTask}
+                onToggleTask={handleToggleTask}
+                onDeleteTask={handleDeleteTask}
+                onSaveFirstStep={handleSaveFirstStep}
+                onStartTask={handleStartTask}
+                onResetPoints={handleResetPoints}
+              />
+            ) : (
+              <section className="login-required">
+                <h2>Log in to start your Focus Flow</h2>
+                <p>
+                  Create tasks, break them into first steps, and track your
+                  progress.
+                </p>
+
+                <button type="button" onClick={() => setIsLoginModalOpen(true)}>
+                  Log In
+                </button>
+              </section>
+            )
           }
         />
 
         <Route path="/resources" element={<ResourceLibrary />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
+
+        <Route
+          path="/profile"
+          element={
+            isLoggedIn ? (
+              <Profile
+                currentUser={currentUser}
+                onUpdateUser={handleUpdateUser}
+              />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
       </Routes>
 
       <Footer />

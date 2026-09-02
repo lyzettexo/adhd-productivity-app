@@ -1,7 +1,13 @@
 import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 
-function Navigation({ isLoggedIn, onLoginClick, onRegisterClick, onLogout }) {
+function Navigation({
+  isLoggedIn,
+  currentUser,
+  onLoginClick,
+  onRegisterClick,
+  onLogout,
+}) {
   return (
     <nav className="navigation">
       <NavLink className="navigation__link" to="/">
@@ -13,9 +19,24 @@ function Navigation({ isLoggedIn, onLoginClick, onRegisterClick, onLogout }) {
       </NavLink>
 
       {isLoggedIn ? (
-        <button className="navigation__button" type="button" onClick={onLogout}>
-          Log Out
-        </button>
+        <>
+          <NavLink className="navigation__link" to="/profile">
+            Profile
+          </NavLink>
+          {currentUser && (
+            <span className="navigation__user">
+              Hi, {currentUser.name || currentUser.email}
+            </span>
+          )}
+
+          <button
+            className="navigation__button"
+            type="button"
+            onClick={onLogout}
+          >
+            Log Out
+          </button>
+        </>
       ) : (
         <>
           <button
